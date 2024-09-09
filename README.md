@@ -1,7 +1,12 @@
 # NordLayer Status
 This script allows you to add icons in the status tray for NordLayer VPN connection in __Elementary OS__. The following will detail how to configure it to run on system boot.
 
-![](https://i.ibb.co/zHrhHTr/screenshot.png)
+![](https://i.ibb.co/hXYjFBn/disconnected.png)
+![](https://i.ibb.co/rcqZ9yf/disconnected-notification.png)
+![](https://i.ibb.co/fMV7zTP/connecting.png)
+![](https://i.ibb.co/pKm2gVz/connected-notification.png)
+![](https://i.ibb.co/f2rG2JK/connected.png)
+
 
 ## Warning
 These steps have been performed only on the __Elementary OS 7.1 Horus__ distribution. I do not know if it could give failures in other Linux distributions.
@@ -40,5 +45,5 @@ X-GNOME-Autostart-enabled=true
 Obviously, all sections must be configured according to your needs.
 
 This should make the application recognized by the system and available to start at system boot.
-![](https://i.ibb.co/rkMN5Hd/system-boot.png)
+![](https://i.ibb.co/HrGp82m/autostart.png)
 
