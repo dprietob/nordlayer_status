@@ -9,6 +9,8 @@ gi.require_version('Notify', '0.7')
 from gi.repository import GLib, Gtk, AppIndicator3, Notify
 
 def main():
+    global gateway
+    gateway = 'xxx-YYYYYY'
     update_icon(last_status)
     update_menu(last_status)
 
@@ -37,7 +39,7 @@ def update_menu(is_active):
 
     if is_active:
         # Status option
-        status = Gtk.MenuItem(label="Connected to xxx-YYYYY")
+        status = Gtk.MenuItem(label="Connected to " + gateway)
         status.set_sensitive(False)
         menu.append(status)
 
@@ -65,7 +67,7 @@ def update_menu(is_active):
 
 def show_toast(is_active):
     if is_active:
-        show_notification('VPN connection', 'Connected to NordLayer gateway xxx-YYYYY', 'security-high')
+        show_notification('VPN connection', 'Connected to NordLayer gateway ' + gateway, 'security-high')
     else:
         show_notification('VPN connection', 'VPN disconnected', 'security-medium')
 
@@ -79,7 +81,7 @@ def disconnect_vpn(menu_item):
 
 def connect_vpn(menu_item):
     show_notification('VPN connection', 'Connecting VPN...', 'security-low')
-    threading.Thread(target=run_command, args=(['nordlayer', 'connect', 'gw1-duT1wAUN'],)).start()
+    threading.Thread(target=run_command, args=(['nordlayer', 'connect', gateway],)).start()
 
 def run_command(command):
     subprocess.run(command, stdout=subprocess.PIPE)
@@ -90,8 +92,8 @@ def show_notification(title, message, icon):
     notification.show()
 
 if __name__ == "__main__":
-    global indicator, last_status
-    indicator = AppIndicator3.Indicator.new("vpntray", "security-medium", AppIndicator3.IndicatorCategory.APPLICATION_STATUS)
+    global indicator, last_status, gateway
+    indicator = AppIndicator3.Indicator.new("vpntray2", "security-medium", AppIndicator3.IndicatorCategory.APPLICATION_STATUS)
     indicator.set_status(AppIndicator3.IndicatorStatus.ACTIVE)
     last_status = False
     main()

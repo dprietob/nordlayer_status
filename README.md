@@ -15,25 +15,28 @@ These steps have been performed only on the __Elementary OS 7.1 Horus__ distribu
 This documentation uses ``python`` command to run and compile Python scripts. This command may be different on your system (e.g. ``python3``). You should use whatever command is available to you.
 
 ## Configuration
-First of all, it's necessary install [Wingpanel Ayatana-Compatibility Indicator](https://github.com/Lafydev/wingpanel-indicator-ayatana) on your system if it is not already installed. Afterwards, you can open the script with any code editor and modify it to add options according to your needs. The script is very short and simple and includes some commented features by default, so it will not be difficult for you to understand how it works.
+First, you need to install [Wingpanel Ayatana-Compatibility Indicator](https://github.com/Lafydev/wingpanel-indicator-ayatana) on your system if it is not already installed. Then, open the script with any code editor and modify ``line 13`` to indicate the ID of the NordLayer gateway you want to connect to (yes, right now only one gateway is supported and it is not configurable):
+```
+gateway = 'xxx-YYYYYY'
+```
 
 ## Installation
 Once configured to your liking, you can run the script directly using:
 ```
-python vpn-indicator.py
+python nordlayer_status.py
 ```
 If you don't want to have to run this command every time you boot your system, you can tell your Linux distribution to run it for you. To do this, give it run permissions using this command:
 ```
-chmod +x vpn-indicator.py
+chmod +x nordlayer_status.py
 ```
 
-Next, move the ``vpn-indicator.py`` file to the ``~.local/bin/`` directory on your system (create it if not exists), and then create a ``.desktop`` file inside the ``~.config/autostart/`` directory with the following content:
+Next, move the ``nordlayer_status.py`` file to the ``~.local/bin/`` directory on your system (create it if not exists), and then create a ``.desktop`` file inside the ``~.config/autostart/`` directory with the following content:
 ```
 [Desktop Entry]
 Name=NordLayer Status
 GenericName=NordLayer Status
 Comment=NordLayer status tray icon
-Exec=nordlayer_status.py
+Exec=/home/user/.local/bin/nordlayer_status.py
 Terminal=false
 Type=Application
 Icon=nordlayer-icon-path
